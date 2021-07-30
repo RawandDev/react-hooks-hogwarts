@@ -1,9 +1,9 @@
-import React from "react";
-// import FilterGreased from "./FilterGreased";
+import { useState } from "react";
+import FilterGreased from "./FilterGreased";
 
 function Card({ hogs, onFilterHogs }) {
-  const [checked, setChecked] = React.useState(false);
-  const [filteredHogs, setFilteredHogs] = React.useState(onFilterHogs);
+  const [checked, setChecked] = useState(false);
+  const [filteredHogs, setFilteredHogs] = useState(onFilterHogs);
 
   function onFilterHogsProp() {
     setChecked(() => !checked);
@@ -27,21 +27,18 @@ function Card({ hogs, onFilterHogs }) {
 
   return (
     <div>
-      <label htmlFor="greasedHog">Greased Hog</label>
-      <form>
+      <label htmlFor="greasedHog">Show Greased Hogs</label>
+      {/* <form>
         <input
           type="checkbox"
           name=""
           value={checked}
           onChange={onFilterHogsProp}
         />
-      </form>
-      
-      {checked
-        ? greasedHog
-        : null}
+      </form> */}
+      <FilterGreased onFilterNow={onFilterHogsProp} checkValue={checked} />
 
-      {/* <FilterGreased onFilterNow={onFilterHogsProp} /> */}
+      {checked ? greasedHog : null}
     </div>
   );
 }

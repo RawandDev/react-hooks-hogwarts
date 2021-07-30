@@ -1,19 +1,26 @@
 // import { useState } from "react";
 
-// function FilterGreased({ onFilterNow }) {
-//   const [filterPigs, setFilterPigs] = useState(false);
+function FilterGreased({ onFilterNow, checkValue }) {
+  //   const [filterPigs, setFilterPigs] = useState(false);
 
-//   function handleChange() {
-//     setFilterPigs(() => !filterPigs);
-//   }
+  //   function handleChange() {
+  //     setFilterPigs(() => !filterPigs);
+  //   }
 
-//   console.log(filterPigs);
+  //   console.log(filterPigs);
 
-//   return (
-//     <form>
-//       <input type="checkbox" name="" value={filterPigs} onChange={onFilterNow} />
-//     </form>
-//   );
-// }
+  console.log(checkValue);
 
-// export default FilterGreased;
+  return (
+    <form>
+      <input
+        type="checkbox"
+        name=""
+        value={checkValue}
+        onChange={onFilterNow}
+      />
+    </form>
+  );
+}
+
+export default FilterGreased;
