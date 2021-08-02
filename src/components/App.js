@@ -11,15 +11,14 @@ function App() {
     return hog.greased;
   });
 
-  // onAddNewHog is a function that add a new hog to the list
-  function onAddNewHog(hog) {
-    setHogData([...hogData, hog]);
-  }
+  // function onAddNewHog(hog) {
+  //   setHogData([...hogData, hog]);
+  // }
 
   return (
     <div className="App">
       <Nav />
-      <Card hogs={hogs} onFilterHogs={filteredHogs} onAddHog={onAddNewHog} />
+      <Card hogs={hogs} onFilterHogs={filteredHogs}/>
     </div>
   );
 }

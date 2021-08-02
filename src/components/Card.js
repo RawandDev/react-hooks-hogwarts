@@ -1,11 +1,11 @@
 import { useState } from "react";
 import AddHog from "./AddHog";
 import FilterGreased from "./FilterGreased";
-// import Sort from "./Sort";
 
-function Card({ hogs, onFilterHogs, onAddNewHog }) {
+function Card({ hogs, onFilterHogs }) {
   const [checked, setChecked] = useState(false);
   const [filteredHogs, setFilteredHogs] = useState(onFilterHogs);
+  const [showDetails, setShowDetails] = useState(false);
 
   const [sort, setSort] = useState([]);
 
@@ -14,22 +14,45 @@ function Card({ hogs, onFilterHogs, onAddNewHog }) {
     setFilteredHogs(onFilterHogs);
   }
 
+  function showDetailsHandler() {
+    setShowDetails(() => !showDetails);
+  }
+
   const greasedHog = filteredHogs.map((hog, i) => {
     return (
-      <div class="ui card">
-        <div class="ui masked image">
-          <img src={hog.image} class="visible content" />
+      <div className="ui card">
+        <div className="ui masked image">
+          <img src={hog.image} className="visible content" alt={hog.name} />
         </div>
-        <div class="content">
-          <a class="header">Name: {hog.name}</a>
-          <div class="meta">
-            <span class="date">Weight: {hog.weight}</span>
+        <div className="content">
+          <p className="header">Name: {hog.name}</p>
+          <div>
+            <button type="button" onClick={showDetailsHandler}>
+              {showDetails ? "Hide Details" : "Show Details"}
+            </button>
+            {showDetails && (
+              <div
+                className="meta"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "20px",
+                }}
+              >
+                <span className="date">Weight: {hog.weight}</span>
+                <span className="date">Specialty: {hog.specialty}</span>
+                <span className="date">
+                  Highest Medal Achieved: {hog["highest medal achieved"]}
+                </span>
+              </div>
+            )}
           </div>
         </div>
-        <div class="extra content">
-          <a>
-            <i class="users icon"></i>Greased: {hog.greased ? "True" : "False"}
-          </a>
+        <div className="extra content">
+          <div>
+            <i className="users icon"></i>Greased:{" "}
+            {hog.greased ? "True" : "False"}
+          </div>
         </div>
       </div>
     );
@@ -37,20 +60,39 @@ function Card({ hogs, onFilterHogs, onAddNewHog }) {
 
   const allHogs = hogs.map((hog, i) => {
     return (
-      <div class="ui card">
-        <div class="ui masked image">
-          <img src={hog.image} class="visible content" />
+      <div className="ui card">
+        <div className="ui masked image">
+          <img src={hog.image} className="visible content" alt={hog.name} />
         </div>
-        <div class="content">
-          <a class="header">Name: {hog.name}</a>
-          <div class="meta">
-            <span class="date">Weight: {hog.weight}</span>
+        <div className="content">
+          <p className="header">Name: {hog.name}</p>
+          <div>
+            <button type="button" onClick={showDetailsHandler}>
+              {showDetails ? "Hide Details" : "Show Details"}
+            </button>
+            {showDetails && (
+              <div
+                className="meta"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "20px",
+                }}
+              >
+                <span className="date">Weight: {hog.weight}</span>
+                <span className="date">Specialty: {hog.specialty}</span>
+                <span className="date">
+                  Highest Medal Achieved: {hog["highest medal achieved"]}
+                </span>
+              </div>
+            )}
           </div>
         </div>
-        <div class="extra content">
-          <a>
-            <i class="users icon"></i>Greased: {hog.greased ? "True" : "False"}
-          </a>
+        <div className="extra content">
+          <div>
+            <i className="users icon"></i>Greased:{" "}
+            {hog.greased ? "True" : "False"}
+          </div>
         </div>
       </div>
     );
@@ -71,7 +113,7 @@ function Card({ hogs, onFilterHogs, onAddNewHog }) {
 
   return (
     <div>
-      <AddHog onAddNewHog={onAddNewHog} hogs={hogs} />
+      {/* <AddHog onAddNewHog={onAddNewHog} hogs={hogs} /> */}
       <select name="p" onChange={sortedHandler}>
         <option value="default">Default</option>
         <option value="name">Name</option>
